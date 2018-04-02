@@ -22,8 +22,10 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public Mono<UserContract> save(@RequestBody final UserContract user) {
-        return repository.save(converter.convert(user))
+    public Mono<UserContract> save(@RequestBody final Mono<UserContract> user) {
+        return user
+                .map(converter::convert)
+                .flatMap(repository::save)
                 .map(converter::convert);
     }
 
