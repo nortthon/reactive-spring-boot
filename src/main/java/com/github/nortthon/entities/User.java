@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Document(collection = "Users")
+@Document(collection = "users")
 public class User {
 
     @Id
