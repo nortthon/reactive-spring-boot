@@ -1,0 +1,58 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: reactive
+  labels:
+    name: reactice
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: reactive-config
+  namespace: reactive
+data:
+  JAVA_OPTS: -Xmx64m -Xms64m
+  MONGO_URI: mongodb://10.0.97.28:27017/test
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: reactive-spring-boot
+  namespace: reactive
+  labels:
+    serviceType: reactive-spring-boot
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: reactive-spring-boot
+      labels:
+        serviceType: reactive-spring-boot
+    spec:
+      containers:
+        - name: reactive-spring-boot
+          image: nortthon/reactive-spring-boot:0.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
+          env:
+          - name: SPRING_APPLICATION_NAME
+            value: "reactive-spring-boot"
+          envFrom:
+          - configMapRef:
+              name: reactive-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reactive-spring-boot
+  namespace: reactive
+spec:
+  selector:
+    serviceType: reactive-spring-boot
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30001
+  type: NodePort
