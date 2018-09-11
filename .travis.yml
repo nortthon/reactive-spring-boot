@@ -1,4 +1,4 @@
 language: java
 
 after_success:
-  - ./mvnw clean test jacoco:report coveralls:report
+  - ./mvnw clean test jacoco:report coveralls:report -DrepoToken=tc3sACwXx8k0mmIfs5I4YtHdAbxYWCy8U
