@@ -1,5 +1,8 @@
 language: java
 
+script:
+  - echo $MEU_NOME
+
 after_success:
   - ./mvnw clean test jacoco:report com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=055b505e8b7441f68f0c672d50f554ff -DapiToken=RDcSt4YOA7qUCHH0PtEF
 #  - ./mvnw clean test jacoco:report coveralls:report -DrepoToken=tc3sACwXx8k0mmIfs5I4YtHdAbxYWCy8U
