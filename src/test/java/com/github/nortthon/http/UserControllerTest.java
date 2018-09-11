@@ -73,7 +73,7 @@ public class UserControllerTest {
     public void testFindUserById() {
         Mockito.when(repository.findById("9999999999999")).thenReturn(Mono.just(mockUser()));
 
-        client.get().uri("/user/9999999999999")
+        client.get().uri("/user/" + mockUser().getId())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
