@@ -35,7 +35,7 @@ public class UserControllerTest {
     private UserConverter converter;
 
     @Test
-    public void test_save_user() {
+    public void testSaveUser() {
         Mockito.when(repository.save(any())).thenReturn(Mono.just(mockUser()));
 
         final UserContract contract = new UserContract();
@@ -55,7 +55,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void test_find_all_users() {
+    public void testFindAllUsers() {
         Mockito.when(repository.findAll()).thenReturn(Flux.just(mockUser()));
 
         client.get().uri("/user")
@@ -70,7 +70,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void test_find_user_by_id() {
+    public void testFindUserById() {
         Mockito.when(repository.findById("9999999999999")).thenReturn(Mono.just(mockUser()));
 
         client.get().uri("/user/9999999999999")
@@ -83,7 +83,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void test_user_not_found() {
+    public void testUserNotFound() {
         Mockito.when(repository.findById("1234567890")).thenReturn(Mono.empty());
 
         client.get().uri("/user/1234567890")
