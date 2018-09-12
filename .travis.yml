@@ -6,4 +6,4 @@ cache:
 
 after_success:
   - ./mvnw clean test jacoco:report com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$CODACY_PROJECT_TOKEN -DapiToken=$CODACY_API_TOKEN
-#  - ./mvnw clean test jacoco:report coveralls:report -DrepoToken=tc3sACwXx8k0mmIfs5I4YtHdAbxYWCy8U
+#  - ./mvnw clean test jacoco:report coveralls:report -DrepoToken=$COVERALLS_REPO_TOKEN

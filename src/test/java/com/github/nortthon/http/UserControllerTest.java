@@ -54,7 +54,7 @@ public class UserControllerTest {
                 .jsonPath("$.birthday").isEqualTo("1985-10-10");
     }
 
-    //@Test
+    @Test
     public void testFindAllUsers() {
         Mockito.when(repository.findAll()).thenReturn(Flux.just(mockUser()));
 
@@ -69,7 +69,7 @@ public class UserControllerTest {
                 .jsonPath("$[0].birthday").isEqualTo("1985-10-10");
     }
 
-    //@Test
+    @Test
     public void testFindUserById() {
         Mockito.when(repository.findById("9999999999999")).thenReturn(Mono.just(mockUser()));
 
