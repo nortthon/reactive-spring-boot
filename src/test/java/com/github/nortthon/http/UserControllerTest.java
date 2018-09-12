@@ -34,7 +34,7 @@ public class UserControllerTest {
     @SpyBean
     private UserConverter converter;
 
-    //@Test
+    @Test
     public void testSaveUser() {
         Mockito.when(repository.save(any())).thenReturn(Mono.just(mockUser()));
 
