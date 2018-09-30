@@ -1,8 +1,6 @@
 package com.github.nortthon.http;
 
 import com.github.nortthon.exceptions.UserNotFoundException;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,10 +18,24 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(response, NOT_FOUND);
     }
 
-    @Getter
-    @Setter
     private class ExceptionResponse {
         private String errorCode;
         private String errorMessage;
+
+        public String getErrorCode() {
+            return errorCode;
+        }
+
+        public void setErrorCode(String errorCode) {
+            this.errorCode = errorCode;
+        }
+
+        public String getErrorMessage() {
+            return errorMessage;
+        }
+
+        public void setErrorMessage(String errorMessage) {
+            this.errorMessage = errorMessage;
+        }
     }
 }

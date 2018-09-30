@@ -4,7 +4,6 @@ import com.github.nortthon.exceptions.UserNotFoundException;
 import com.github.nortthon.http.contracts.UserContract;
 import com.github.nortthon.http.converters.UserConverter;
 import com.github.nortthon.repositories.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -12,13 +11,17 @@ import reactor.core.publisher.Mono;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
     private final UserRepository repository;
 
     private final UserConverter converter;
+
+    public UserController(UserRepository repository, UserConverter converter) {
+        this.repository = repository;
+        this.converter = converter;
+    }
 
     @PostMapping
     @ResponseStatus(CREATED)
